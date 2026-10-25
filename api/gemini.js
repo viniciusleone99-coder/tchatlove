@@ -39,5 +39,11 @@ ${conversation}`;
     let parsed;try{parsed=JSON.parse(output);}catch{return reply(res,502,{error:'Réponse inattendue du service. Réessayez.',remaining:Math.max(0,LIMIT-count)});}
     if(!Array.isArray(parsed.replies)||parsed.replies.length!==3||parsed.replies.some(x=>typeof x.text!=='string'||!x.text.trim()))return reply(res,502,{error:'Réponses incomplètes. Réessayez.',remaining:Math.max(0,LIMIT-count)});
     return reply(res,200,{replies:parsed.replies.map(x=>({style:String(x.style||'Suggestion').slice(0,35),text:x.text.slice(0,1000)})),remaining:Math.max(0,LIMIT-count)});
-  }catch(e){return reply(res,503,{error:e.name==='AbortError'?'Le service a mis trop de temps à répondre.':'Service temporairement indisponible.'});}
+ } catch (e) {
+  console.error('[TCHATLOVE API ERROR]', e);
+  return reply(res, 503, {
+    error: e.name === 'AbortError'
+      ? 'Le service a mis trop de temps à répondre.'
+      : 'Service temporairement indisponible.'
+  });
 }
