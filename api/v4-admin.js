@@ -25,6 +25,6 @@ export default async function handler(req,res){
  if(!m.ok)return res.status(503).json({error:'Métricas indisponíveis'});
  const v=await fetch(base+'/rest/v1/v4_admin_visits?select=day&day=gte.'+start.toISOString().slice(0,10),{headers:{...headers,Prefer:'count=exact',Range:'0-0'},signal:AbortSignal.timeout(10000)});
  const count=v.ok?Number(v.headers.get('content-range')?.split('/')[1]):NaN;
- return res.status(200).json({rows:await m.json(),collectionEnabled:false,adminDays:visit.ok&&Number.isFinite(count)?count:null});
+ const analytics=await fetch(base+'/rest/v1/rpc/v4_device_summary',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({p_days:days,p_lang:lang}),signal:AbortSignal.timeout(10000)});return res.status(200).json({rows:await m.json(),collectionEnabled:true,analytics:analytics.ok?await analytics.json():null,adminDays:visit.ok&&Number.isFinite(count)?count:null});
  }catch{return res.status(503).json({error:'Serviço temporariamente indisponível'})}
 }
