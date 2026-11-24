@@ -1,7 +1,7 @@
-const CACHE = 'tchatlove-pwa-v4-customer-push';
+const CACHE = 'tchatlove-pwa-v4-customer-push-r2';
 const ASSETS = ['/', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png'];
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
@@ -27,7 +27,7 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('push', event => {
  let data={};try{data=event.data?.json()||{}}catch{}
- event.waitUntil(self.registration.showNotification(typeof data.title==='string'?data.title.slice(0,60):'Tchat Love Club',{body:typeof data.body==='string'?data.body.slice(0,180):'Une nouvelle notification est disponible.',icon:'/icons/icon-192.png',tag:data.kind==='daily'?'tchatlove-daily':'tchatlove-test',data:{url:'/'}}));
+ event.waitUntil(self.registration.showNotification(typeof data.title==='string'?data.title.slice(0,60):'Tchat Love Club',{body:typeof data.body==='string'?data.body.slice(0,180):'Une nouvelle notification est disponible.',icon:'/icons/icon-192.png',tag:'tchatlove-'+(data.kind==='daily'?'daily':'test')+'-'+(typeof data.id==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(data.id)?data.id:crypto.randomUUID()),renotify:true,data:{url:'/'}}));
 });
 self.addEventListener('notificationclick',event=>{
  event.notification.close();
