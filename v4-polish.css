@@ -1,0 +1,30 @@
+/* Tchat Love Club — interface system, preview only */
+:root{--bg:#0d0b0c;--bg2:#171315;--bg3:#21191c;--fg:#f9f4f5;--sub:#c2b7bb;--gold:#ff697b;--stroke:#ffffff20;--red:#d83d55;--radius:18px}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-synthesis:none}
+.main-app{background:radial-gradient(ellipse at 88% 0,#6d28351c,transparent 44%),var(--bg)}
+.header{background:#100d10ed;border-bottom:1px solid #ffffff15;gap:clamp(12px,2vw,28px)}
+.logo-badge{box-shadow:0 4px 16px #d43b4d26}.logo-title{letter-spacing:-.015em}
+.page{max-width:1320px;padding-top:clamp(24px,4vw,56px)}
+.heading,.sec h2,.poster h3,.profile-panel h3{letter-spacing:-.04em}
+.welcome{font-size:clamp(34px,4vw,54px)}.greeting-line{color:#c5b7bc;line-height:1.6}
+.eyebrow{letter-spacing:.15em;font-size:10px}.quote{background:linear-gradient(105deg,#3a1c25,#1a1417 64%);border-color:#b764733d;border-radius:16px;box-shadow:none}
+.quote:after,.feature:after{display:none}.feature{min-height:330px;background:radial-gradient(ellipse at 94% 12%,#a63a4c38,transparent 55%),linear-gradient(125deg,#21171b,#100e10);border:1px solid #ffffff1c;box-shadow:0 12px 34px #0003}
+.feature:before{opacity:.5;pointer-events:none}.feature-text{padding:clamp(24px,4.5vw,56px);max-width:760px}.feature h2{font-size:clamp(36px,4.5vw,62px)}
+.btn{min-height:44px;border-radius:11px;font-weight:700;letter-spacing:.005em;box-shadow:0 3px 9px #0002;transition:transform .16s ease,background .18s,border-color .18s,box-shadow .18s,filter .18s}.btn.secondary,.btn.ghost{box-shadow:none}
+.poster,.tile,.club-card,.profile-panel,.v3-tile,.decode-card{border:1px solid #ffffff1e;border-radius:18px;background-color:#191416;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.poster{min-height:320px;box-shadow:0 6px 24px #0002}.poster-content{padding:clamp(22px,3vw,34px)}.poster-art{transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.v3-tile{background:linear-gradient(140deg,#25191e,#151214);min-height:108px}.tile{background:#191416}.sec h2{font-size:clamp(26px,3vw,34px)}
+.header .navlink{min-height:44px}.header .navlink.active:after{height:3px;bottom:4px}
+button:not(:disabled):active,.btn:active{transform:scale(.975)}.btn:focus-visible,button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #ff8d9a;outline-offset:4px}
+.field input,.decode-tools input,.decode-tools select,.club-form select{border-color:#ffffff30;background:#181416;border-radius:11px;transition:border-color .2s,box-shadow .2s}.field input:focus{box-shadow:0 0 0 3px #ff697b20}
+dialog{box-shadow:0 24px 80px #0009}dialog::backdrop{background:#09070ab8;backdrop-filter:blur(4px)}
+.tl4-utilities{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:20px auto 12px;padding:0 16px;max-width:1320px}.tl4-utilities button{position:static!important;min-height:44px;border:1px solid #ffffff24!important;border-radius:10px!important;background:#1b1619!important;padding:10px 16px!important;color:#e6dce0!important;font-size:12px!important}.tl4-utilities button:hover{border-color:#ff697b!important}
+.tl4-quick{margin:0 0 26px;padding:18px 22px;background:#191416;border:1px solid #ffffff1c;border-radius:16px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.tl4-quick strong{font-size:14px}.tl4-quick p{margin:4px 0 0;color:#c2b7bb;font-size:13px}.tl4-quick .btn{flex:none}
+@media(hover:hover) and (pointer:fine){.poster:hover,.v3-tile:hover,.club-card:hover,.profile-panel:hover,.decode-card:hover,.tile:hover{transform:translateY(-3px);border-color:#ff697b77;box-shadow:0 12px 28px #0004}.poster:hover .poster-art{transform:scale(1.035)}.btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px #0004}.btn:active{transform:scale(.975)}}
+@media(max-width:850px){.page{padding-bottom:30px}.club-tabs{background:#151115f7;border-color:#ffffff1f}.club-tabs button{min-height:52px}.tl4-utilities{margin-bottom:calc(80px + env(safe-area-inset-bottom));}.tl4-quick{padding:16px}.tl4-quick .btn{width:100%}.feature{min-height:0}.poster{min-height:300px}.header .logo{min-width:0}.header-right{gap:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;transform:none!important}}
+
+/* Internal navigation and accessible interaction states */
+.v3-tile>span{display:grid;place-items:center;width:44px;height:44px;background:#ff697b12;border:1px solid #ff697b25;border-radius:12px}.v3-tile svg{width:24px;height:24px}.v3-tile b{font-size:14px;line-height:1.4}.v3-grid{gap:16px}.club-card h3{line-height:1.3;letter-spacing:-.02em}.club-card p,.profile-panel p{line-height:1.7}.club-task.done{border-color:#b95b6b}.meter i,.club-progress i{transition:width .45s ease}.club-fav,.decode-chip,.back,.v3-icon{transition:background .18s,border-color .18s,color .18s;min-height:44px}.club-fav[aria-pressed=true]{background:#481b28;border-color:#e97c90}.club-tabs button[aria-current=page]{background:#ff697b12;border-radius:11px}.club-card summary{padding:8px 0;min-height:44px}.club-card summary:hover{color:var(--gold)}.tl4-utilities:empty{display:none}.toast{border-radius:14px;box-shadow:0 14px 38px #0008}.viewer-top{gap:12px}.viewer-top .back{min-height:44px}.v3-tools select{min-height:44px}
+@media(max-width:850px){.v3-grid{gap:10px}.v3-tile{padding:14px;min-height:124px}.v3-tile b{font-size:13px}.viewer-top{height:auto;min-height:56px;flex-wrap:wrap;padding:6px 12px}.viewer-top .v3-listen{flex-wrap:wrap}.tl4-utilities{justify-content:center}.club-tabs button{padding:7px 3px}}
+@media(prefers-reduced-motion:reduce){.meter i,.club-progress i{transition:none!important}}
