@@ -14,7 +14,7 @@ export default async function handler(req,res){
  const user=await u.json();
  const a=await fetch(base+'/rest/v1/v4_admins?select=user_id&active=eq.true&user_id=eq.'+encodeURIComponent(user.id),{headers,signal:AbortSignal.timeout(10000)});
  if(!a.ok)return res.status(503).json({error:'Permissão indisponível'});
- if(!(await a.json()).length)return res.status(403).json({error:'Administrador autorizado e MFA necessários'});
+ if(!(await a.json()).length)return res.status(403).json({error:'Administrador autorizado necessário'});
  const days=Number(req.query.days||7),lang=String(req.query.lang||'all');
  if(![7,30,90].includes(days)||!['all','fr','it','en','es','de','pt','unknown'].includes(lang))return res.status(400).json({error:'Filtro inválido'});
  const start=new Date();start.setUTCDate(start.getUTCDate()-days+1);
